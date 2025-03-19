@@ -1,5 +1,16 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist"]
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "exclude": [
+    "dist"
+  ],
+  "compilerOptions": {
+    "allowJs": true, // Permite usar archivos JS junto a TS
+    "checkJs": false, // No realiza verificaciones de tipo en archivos JS
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
 }
