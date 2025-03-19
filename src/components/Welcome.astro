@@ -3,7 +3,7 @@ const categories = [
   { name: "Electrónica", icon: "📱" },
   { name: "Hogar", icon: "🏠" },
   { name: "Ropa", icon: "👕" },
-  { name: "Deportes", icon: "⚽" },
+  { name: "Vehículos", icon: "🚗" },
 ];
 
 const featuredProducts = [
@@ -11,14 +11,42 @@ const featuredProducts = [
     id: 1,
     name: "Televisor Samsung 55\"",
     price: "$500",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "https://descriptive.audio/wp-content/uploads/2024/01/accessing-favorite-channels-on-samsung-smart-tv-1200x686.jpg",
     location: "Madrid, España",
   },
   {
     id: 2,
     name: "Sofá 3 plazas",
     price: "$150",
-    imageUrl: "https://via.placeholder.com/150",
+    imageUrl: "https://ii1.pepperfry.com/media/catalog/product/h/a/1100x1210/havana-one-seater-sofa-in-ecru-colour-by-casacraft-havana-one-seater-sofa-in-ecru-colour-by-casacraf-tesls0.jpg",
+    location: "Barcelona, España",
+  },
+  {
+    id: 3,
+    name: "Ferrari 296 GTS",
+    price: "$50000",
+    imageUrl: "https://cdn.motor1.com/images/mgl/P3g46r/s4/lego-florida-ferrari-296-gts-model.jpg",
+    location: "Barcelona, España",
+  },
+  {
+    id: 4,
+    name: "Tienda de ropa",
+    price: "$50000",
+    imageUrl: "https://th.bing.com/th/id/OIP.fCL_1GuDqf-Qk1RD4PhPLAHaEQ?rs=1&pid=ImgDetMain",
+    location: "Barcelona, España",
+  },
+  {
+    id: 5,
+    name: "Camisetas y camperas",
+    price: "$50000",
+    imageUrl: "https://i.pinimg.com/originals/80/ef/2c/80ef2c6ae4191535825508fc37b4f495.jpg",
+    location: "Barcelona, España",
+  },
+  {
+    id: 6,
+    name: "Celulares usados",
+    price: "$50000",
+    imageUrl: "https://cdn.storifyme.com/accounts/cashify-in-0561312/assets/f-eoy-2022-best-phones-on-leather-82671674411446738.jpeg?t=1674415475000",
     location: "Barcelona, España",
   },
 ];
@@ -29,7 +57,7 @@ const featuredProducts = [
     <!-- Hero Section -->
     <div class="bg-blue-600 text-white py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl font-bold">Compra y vende localmente</h1>
+        <h1 class="text-4xl font-bold font-serif">Compra y vende localmente</h1>
         <p class="mt-4 text-lg">
           Encuentra lo que necesitas en tu comunidad o gana dinero con tus productos usados.
         </p>
@@ -50,9 +78,9 @@ const featuredProducts = [
     <!-- Categories Section -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h2 class="text-2xl font-bold text-gray-800">Explora por categorías</h2>
-      <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6">
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 ">
         {categories.map((category) => (
-          <div class="flex flex-col items-center bg-white shadow rounded-lg p-4">
+          <div class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100">
             <span class="text-4xl">{category.icon}</span>
             <p class="mt-2 text-gray-700">{category.name}</p>
           </div>
@@ -65,7 +93,7 @@ const featuredProducts = [
       <h2 class="text-2xl font-bold text-gray-800">Productos destacados</h2>
       <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {featuredProducts.map((product) => (
-          <div class="flex flex-col bg-white shadow rounded-lg overflow-hidden">
+          <div class="flex flex-col bg-white shadow rounded-lg overflow-hidden hover:bg-gray-100 hover:cursor-pointer transform transition duration-300 hover:scale-102">
             <img src={product.imageUrl} alt={product.name} class="h-48 w-full object-cover" />
             <div class="p-4">
               <h3 class="text-lg font-bold">{product.name}</h3>
@@ -95,33 +123,10 @@ const featuredProducts = [
 
 
 <style>
-	#background {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		z-index: -1;
-		filter: blur(100px);
-	}
 
 	#container {
 		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
 		height: 100%;
-	}
-
-	main {
-		height: 100%;
-		display: flex;
-		justify-content: center;
-	}
-
-	#hero {
-		display: flex;
-		align-items: start;
-		flex-direction: column;
-		justify-content: center;
-		padding: 16px;
 	}
 
 	h1 {
@@ -186,28 +191,11 @@ const featuredProducts = [
 	}
 
 	p {
-		color: #4b5563;
+		color: #000000;
 		font-size: 16px;
 		line-height: 24px;
 		letter-spacing: -0.006em;
 		margin: 0;
-	}
-
-	code {
-		display: inline-block;
-		background:
-			linear-gradient(66.77deg, #f3cddd 0%, #f5cee7 100%) padding-box,
-			linear-gradient(155deg, #d83333 0%, #f041ff 18%, #f5cee7 45%) border-box;
-		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 6px 8px;
-	}
-
-	.box {
-		padding: 16px;
-		background: rgba(255, 255, 255, 1);
-		border-radius: 16px;
-		border: 1px solid white;
 	}
 
 	#news {
