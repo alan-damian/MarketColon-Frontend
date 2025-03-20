@@ -1,0 +1,45 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+    <div class="bg-blue-500 h-screen w-100% flex justify-center items-center">
+        <div class="bg-white p-10 rounded-lg shadow-md w-1/2 h-1/2">
+            <h1 class="text-2xl font-bold text-gray-800">Contacto</h1>
+            <p class="mt-4 text-gray-700">Envianos un mensaje</p>
+            <form id="miFormulario">
+                <input
+                type="text"
+                placeholder="Nombre"
+                class="w-1/2 px-4 py-2 rounded-md border border-gray-300 mt-4"
+                />
+                <input
+                type="email"
+                placeholder="Email"
+                class="w-1/2 px-4 py-2 rounded-md border border-gray-300 mt-4"
+                />
+                <textarea
+                placeholder="Mensaje"
+                class="w-1/2 px-4 py-2 rounded-md border border-gray-300 mt-4"
+                ></textarea>
+                <button type="submit" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
+                Enviar
+                </button>
+            </form>
+        </div>
+        <Footer />
+    </div>
+</Layout>
+
+<style>
+    /*estilo para .bg-blue-500 en dispositivos mobiles tenga flex-direction: column */
+    @media (max-width: 640px) {
+        .bg-blue-500 {
+            flex-direction: column;
+        }
+        .shadow-md {
+            width: 100%;
+        }
+    }
+</style>

@@ -6,7 +6,7 @@ import Footer from "../components/Footer.astro";
 <Layout class="container">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 class="text-2xl font-bold text-gray-800">Acerca de nosotros</h1>
-        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 ">
+        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 articulos">
           <article class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100 transform transition duration-300 hover:scale-102">
             <h2 class="font-serif"><u>Somos Market Colón</u></h2>
             <p class="mt-2 text-gray-700">Una plataforma donde podes <strong>encontrar los comercios de la ciudad de Colón (Entre Ríos)</strong> y al rededores. Cada local, almacén, tienda de ropa o taller que vas a encontrar en este lugar tiene su propia sección donde podrás ver su catálogo y ahorrar tiempo en recorrer diferentes lugares para encontrar lo que estas buscando.</p>
@@ -16,16 +16,22 @@ import Footer from "../components/Footer.astro";
             <p class="mt-2 text-gray-700">Nunca te pasó estar necesitando algo y no saber donde lo podrías conseguir?, si es el caso, esta es tu herramienta ideal, vas a ver los locales que están esparcidos por la zona, incluso te podrías sorprender de uno que no conocías y tiene exactamente lo que estas buscando.</p>
           </article>
           <article class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100 transform transition duration-300 hover:scale-102">
-            <h2 class="font-serif"><u>NO SÉ</u></h2>
-            <p class="mt-2 text-gray-700">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ut mollitia quis veniam illum, voluptate consequatur, dolorum suscipit, nobis ab quos dignissimos facere doloribus sequi iusto minima laboriosam at hic!</p>
+            <h2 class="font-serif"><u>Quieres ayudar?</u></h2>
+            <p class="mt-2 text-gray-700">Puedes colaborar enviándonos los nombres y ubicación de los comercios que tu pienses que son pocos conocidos, nosotros nos encargaremos de registrarlo para que mas gente encuentre nuevas opciones</p>
           </article>
           <article class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100 transform transition duration-300 hover:scale-102">
-            <h2 class="font-serif"><u>NO SÉ</u></h2>
-            <p class="mt-2 text-gray-700">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium ut mollitia quis veniam illum, voluptate consequatur, dolorum suscipit, nobis ab quos dignissimos facere doloribus sequi iusto minima laboriosam at hic!</p>
+            <h2 class="font-serif"><u>Puedes ser parte</u></h2>
+            <p class="mt-2 text-gray-700">Si te interesa aparecer en esta página, solo debes enviarnos un mensaje con tu nombre y ubicación, de ser necesario nos pondremos en contacto contigo, no importa si recién empezas, o si sos de un rubro muy selecto o específico, todos tienen algo único que ofrecer.</p>
           </article>
         </div>
     </div>
-    <h1>Acerca</h1>
-    <p>Market Colón es una plataforma de comercio electrónico que permite a los comerciantes de la ciudad de Colón, Querétaro, vender sus productos en línea.</p>
     <Footer />
 </Layout>
+
+<style>
+@media (max-width: 640px) {
+    .mt-4 {/* cambiar a 1 sola columna en dispositivos mobiles*/
+        grid-template-columns: 1fr;
+    }
+}
+</style>
