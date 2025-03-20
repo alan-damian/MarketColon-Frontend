@@ -1,0 +1,41 @@
+
+<!-- Call to Action Section -->
+<div class="bg-blue-100 py-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h2 class="text-2xl font-bold text-blue-600"><b>¿Conoces un comercio que no esta aquí?</b></h2>
+    <p class="mt-4 text-gray-700">
+      Compártelos el nombre y la ubicación, para que mas gente lo conozca.
+    </p>
+    <form id="miFormulario">
+      <input
+      type="text"
+      placeholder="Nombre del comercio"
+      class="w-1/2 px-4 py-2 rounded-md border border-gray-300 mt-4"
+    />
+    <button type="submit" class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
+      Enviar Email
+    </button>
+    </form>
+  </div>
+</div>
+
+<!-- POPUP DEL FORMULARIO PARA ENVIAR INFO DE NUEVO COMERCIO -->
+<script>
+    import Swal from 'sweetalert2';
+  
+    document.addEventListener("DOMContentLoaded", () => {
+      const formulario = document.getElementById("miFormulario");
+  
+      if (formulario) {
+        formulario.addEventListener("submit", (event) => {
+        event.preventDefault(); // Evita el reload
+        
+        Swal.fire({
+          title: '¡Éxito!',
+          text: 'Formulario enviado con éxito',
+          icon: 'success',
+        });
+       });
+      };
+    });
+  </script>

@@ -1,14 +1,17 @@
 ---
 import Layout from '../layouts/Layout.astro'
+import Footer from "../components/Footer.astro";
+
 
 const categories = [
   { name: "Ferreteria", icon: "🛠️" },
   { name: "Almacen", icon: "🛒" },
   { name: "Taller", icon: "🧑‍🔧" },
-  { name: "Verduleria", icon: "🥬" },
+  { name: "Verduleria", icon: "🥬" },// si surge otra categoría, unir verduleria + carniceria (crear nuevo icono si es necesario)
   { name: "Carniceria", icon: "🥩" },
   { name: "Vestimenta", icon: "👕" },
   { name: "libreria", icon: "📖" },
+  { name: "Entretenimiento", icon: "🤩" },
 ];
 
 const comerciosLocales = [
@@ -59,7 +62,7 @@ const comerciosLocales = [
 
 <Layout class="container">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 class="text-2xl font-bold text-gray-800">Explora por categorías</h2>
+        <h1 class="text-2xl font-bold text-gray-800">Comercios</h1>
         <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 ">
           {categories.map((category) => (
             <div class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100">
@@ -70,7 +73,7 @@ const comerciosLocales = [
         </div>
     </div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 class="text-2xl font-bold text-gray-800">comercioos destacados</h2>
+        <h2 class="text-2xl font-bold text-gray-800">comercios destacados</h2>
         <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {comerciosLocales.map((comercio) => (
             <div class="flex flex-col bg-white shadow rounded-lg overflow-hidden hover:bg-gray-100 hover:cursor-pointer transform transition duration-300 hover:scale-102">
@@ -84,7 +87,5 @@ const comerciosLocales = [
           ))}
         </div>
       </div>
-    <div id="links">
-        <a href="/comercios" class="button">Publicar ahora</a>
-    </div>
+    <Footer />
 </Layout>

@@ -1,4 +1,6 @@
 ---
+import Footer from "./Footer.astro";
+
 const categories = [
   { name: "Electrónica", icon: "📱" },
   { name: "Hogar", icon: "🏠" },
@@ -57,9 +59,9 @@ const featuredProducts = [
     <!-- Hero Section -->
     <div class="bg-blue-600 text-white py-10">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl font-bold font-serif">Compra y vende localmente</h1>
+        <h1 class="text-4xl font-bold font-serif">Busca y compra localmente</h1>
         <p class="mt-4 text-lg">
-          Encuentra lo que necesitas en tu comunidad o gana dinero con tus productos usados.
+          Encuentra lo que necesitas en tu comunidad
         </p>
         <!-- Search bar -->
         <div class="mt-6 flex justify-center">
@@ -105,21 +107,12 @@ const featuredProducts = [
       </div>
     </div>
 
-    <!-- Call to Action Section -->
-    <div class="bg-blue-100 py-10">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl font-bold text-blue-600">¿Tienes algo que vender?</h2>
-        <p class="mt-4 text-gray-700">
-          Publica tus productos y encuentra compradores en tu región de forma rápida y fácil.
-        </p>
-        <button class="mt-6 bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700">
-          Publicar ahora
-        </button>
-      </div>
-    </div>
+    <Footer />
   </div>
 
 </div>
+
+
 
 
 <style>
