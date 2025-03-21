@@ -1,91 +1,86 @@
 ---
-import Layout from '../layouts/Layout.astro'
+import Layout from '../layouts/Layout.astro';
 import Footer from "../components/Footer.astro";
-
+import { supabase } from '../supabaseClient';
 
 const categories = [
   { name: "Ferreteria", icon: "🛠️" },
   { name: "Almacen", icon: "🛒" },
   { name: "Taller", icon: "🧑‍🔧" },
-  { name: "Verduleria", icon: "🥬" },// si surge otra categoría, unir verduleria + carniceria (crear nuevo icono si es necesario)
-  { name: "Carniceria", icon: "🥩" },
-  { name: "Estetica / Indumentaria", icon: "👕" }, //estetica e indumentaria (reuniria peluquerias y tienda de ropa)
+  { name: "Verduleria | Carniceria", icon: "🥬🥩" },
+  { name: "Web | Electronica", icon: "🌐👨‍💻" },
+  { name: "Estetica | Indumentaria", icon: "💅👕" },
   { name: "libreria", icon: "📖" },
   { name: "Entretenimiento", icon: "🤩" },
 ];
 
-const comerciosLocales = [
-  {
-    id: 1,
-    name: "Ferretería El Colono",
-    imageUrl: "/unaferreteria.png",
-    address: "Calle Colón 123",
-    location: "Madrid, España",
-  },
-  {
-    id: 2,
-    name: "Carnicería La Colonia",
-    imageUrl: "/unkiosco.png",
-    address: "Calle Colón 123",
-    location: "Barcelona, España",
-  },
-  {
-    id: 3,
-    name: "Farmacia El Colón",
-    imageUrl: "/unafarmacia.png",
-    address: "Calle Colón 123",
-    location: "Barcelona, España",
-  },
-  {
-    id: 4,
-    name: "Supermercado El Colón",
-    imageUrl: "/unkiosco.png",
-    address: "Calle Colón 123",
-    location: "Barcelona, España",
-  },
-  {
-    id: 5,
-    name: "Autoservicio El Colón",
-    imageUrl: "/unkiosco.png",
-    address: "Calle Colón 123",
-    location: "Barcelona, España",
-  },
-  {
-    id: 6,
-    name: "Kiosco El Colón",
-    imageUrl: "/unkiosco.png",
-    address: "Calle Colón 123",
-    location: "Barcelona, España",
-  },
-];
+let comerciosLocales: any[] = [];
+
+const { data, error } = await supabase
+  .from('comercios_web_electronica')
+  .select('image_profile, name, type, address');
+
+if (error) {
+  console.error('Error fetching data:', error);
+} else {
+  comerciosLocales = data;
+}
+
+let loading = true;
+
+const fetchComercios = async () => {
+  loading = true;
+  const { data, error } = await supabase
+    .from('comercios_web_electronica')
+    .select('image_profile, name, type, address');
+  if (error) {
+    console.error('Error fetching data:', error);
+  } else {
+    comerciosLocales = data;
+  }
+  loading = false;
+};
+
+await fetchComercios();
+
 ---
 
+
 <Layout class="container">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 class="text-2xl font-bold text-gray-800">Comercios</h1>
-        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 ">
-          {categories.map((category) => (
-            <div class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100">
-              <span class="text-4xl">{category.icon}</span>
-              <p class="mt-2 text-gray-700">{category.name}</p>
-            </div>
-          ))}
-        </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h2 class="text-2xl font-bold text-gray-800">comercios destacados</h2>
-        <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {comerciosLocales.map((comercio) => (
+  <!-- Filtro para las categorías de los comercios -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 class="text-2xl font-bold text-gray-800">Comercios</h1>
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 ">
+        {categories.map((category) => (
+          <div class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100">
+            <span class="text-4xl">{category.icon}</span>
+            <p class="mt-2 text-gray-700">{category.name}</p>
+          </div>
+        ))}
+      </div>
+  </div>
+  <!--------------------------------------------------->
+  <!-- Comercios destacados -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h2 class="text-2xl font-bold text-gray-800">comercios destacados</h2>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {loading ? (
+          <p class="text-center text-gray-500">Cargando comercios...</p>
+        ) : (
+          comerciosLocales.map((comercio) => (
             <div class="flex flex-col bg-white shadow rounded-lg overflow-hidden hover:bg-gray-100 hover:cursor-pointer transform transition duration-300 hover:scale-102">
-              <img src={comercio.imageUrl} alt={comercio.name} class="h-48 w-full object-cover" />
+              <img src={comercio.image_profile} alt={comercio.name} class="h-48 w-full object-cover" />
               <div class="p-4">
                 <h3 class="text-lg font-bold">{comercio.name}</h3>
+                <p class="mt-2 text-gray-600">{comercio.type}</p>
                 <p class="mt-2 text-gray-600">{comercio.address}</p>
-                <p class="mt-1 text-sm text-gray-500">{comercio.location}</p>
               </div>
             </div>
-          ))}
-        </div>
+          ))
+        )}
+        
       </div>
-    <Footer />
+  </div>
+  <!------------------------------------------------->
+  <Footer />
 </Layout>
