@@ -14,17 +14,17 @@ const categories = [
   { link:"ComerciosEntretenimiento", name: "Entretenimiento", icon: "🤩" },
 ];
 
-let comercios_destacados: any[] = [];
+let comercios_ferreteria: any[] = [];
 
 const { data, error } = await supabase
-  .from('comercios_destacados')
+  .from('comercios_ferreteria')
   .select('*');
 
 
 if (error) {
   console.error('Error fetching data:', error);
 } else {
-  comercios_destacados = data;
+  comercios_ferreteria = data;
 }
 
 let loading = true;
@@ -32,12 +32,12 @@ let loading = true;
 const fetchComercios = async () => {
   loading = true;
   const { data, error } = await supabase
-    .from('comercios_destacados')
+    .from('comercios_ferreteria')
     .select('image_profile, name, type, address, location, phone, email, website');
   if (error) {
     console.error('Error fetching data:', error);
   } else {
-    comercios_destacados = data;
+    comercios_ferreteria = data;
   }
   loading = false;
 };
@@ -57,20 +57,20 @@ await fetchComercios();
             <a class="flex flex-col items-center" href={`/${category.link}`}>
               <span class="text-4xl">{category.icon}</span>
               <p class="mt-2 text-gray-700">{category.name}</p>
-            </a>  
+            </a>
           </div>
         ))}
       </div>
   </div>
   <!--------------------------------------------------->
-  <!-- Comercios destacados -->
+  <!-- Comercios ferreteria -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-bold font-serif text-gray-800">Destacados</h2>
+      <h2 class="text-2xl font-bold font-serif text-gray-800">Ferreterías</h2>
       <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {loading ? (
           <p class="text-center text-gray-500">Cargando comercios...</p>
         ) : (
-          comercios_destacados.map((comercio) => (
+          comercios_ferreteria.map((comercio) => (
             <div class="flex flex-col bg-white shadow rounded-lg overflow-hidden hover:bg-blue-100 hover:cursor-pointer transform transition duration-300 hover:scale-102">
               <img src={comercio.image_profile} alt={comercio.name} class="h-48 w-full object-cover" />
               <div class="p-4">
