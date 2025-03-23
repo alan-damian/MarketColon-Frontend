@@ -51,14 +51,14 @@ await fetchComercios();
   <!-- Filtro para las categorías de los comercios -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 class="text-2xl font-bold font-serif text-gray-800">Comercios</h1>
-      <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-6 ">
+      <div class="mt-4 grid grid-cols-2 sm:grid-cols-5 gap-6 ">
         {categories.map((category) => (
-          <div class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100">
-            <a class="flex flex-col items-center" href={`/${category.link}`}>
-              <span class="text-4xl">{category.icon}</span>
-              <p class="mt-2 text-gray-700">{category.name}</p>
-            </a>
-          </div>
+          <a href={`/${category.link}`}>
+            <div class="flex flex-col items-center bg-white shadow rounded-lg p-4 hover:cursor-pointer hover:bg-gray-100">
+                <span class="text-4xl">{category.icon}</span>
+                <p class="mt-2 text-gray-700">{category.name}</p>
+            </div>
+          </a>  
         ))}
       </div>
   </div>
