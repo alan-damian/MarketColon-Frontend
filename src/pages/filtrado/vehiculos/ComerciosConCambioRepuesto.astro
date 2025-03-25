@@ -1,0 +1,80 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Footer from "../../../components/Footer.astro";
+import { supabase } from '../../../supabaseClient';
+
+let comercios_audio_video: any[] = [];
+let loading = true;
+
+const fetchComerciosAV = async () => {
+  loading = true; // Actualiza el estado de carga
+
+  const tablas = [
+    'comercios_destacados',
+    'comercios_taller',
+    'comercios_entretenimiento',
+    'comercios_estetica_indumentaria',
+    'comercios_ferreteria',
+    'comercios_libreria',
+    'comercios_mercado',
+    'comercios_verduleria_carniceria',
+    'comercios_web_electronica'
+  ];
+
+  try {
+    const resultados = await Promise.all(
+      tablas.map(async (tabla) => {
+        const { data, error } = await supabase
+          .from(tabla)
+          .select('image_profile, name, type, address, location, phone, email, website, products')
+          .ilike('products', '%cambio-repuesto%'); // Busca coincidencias de texto
+
+        if (error) {
+          console.error(`Error fetching data from ${tabla}:`, error);
+          return [];
+        }
+        return data || [];
+      })
+    );
+
+    comercios_audio_video = resultados.flat(); // Combina los resultados de todas las tablas
+  } catch (err) {
+    console.error('Error en fetchComerciosAV:', err);
+  }
+
+  loading = false; // Marcar como finalizado
+};
+
+await fetchComerciosAV();
+
+
+
+---
+
+<Layout class="container">
+  <!-- Comercios con Audio y Video -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <h1 class="text-2xl font-bold font-serif text-gray-800">Comercios con Audio y Video</h1>
+      <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {loading ? (
+          <p class="text-center text-gray-500">Cargando comercios...</p>
+        ) : (
+          comercios_audio_video.map((comercio) => (
+            <div class="flex flex-col bg-white shadow rounded-lg overflow-hidden hover:bg-blue-100 hover:cursor-pointer transform transition duration-300 hover:scale-102">
+              <img src={comercio.image_profile} alt={comercio.name} class="h-48 w-full object-cover" />
+              <div class="p-4">
+                <h3 class="text-lg font-bold">{comercio.name}</h3>
+                <p class="mt-2 text-gray-600">{comercio.type}</p>
+                <p class="mt-2 text-gray-600">{comercio.address}</p>
+                <p class="mt-2 text-gray-600">{comercio.location}</p>
+                <p class="mt-2 text-gray-600">{comercio.phone}</p>
+                <p class="mt-2 text-gray-600">{comercio.email}</p>
+                <a href={comercio.website} class="mt-2 text-blue-600 truncate block w-full">{comercio.website}</a>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+  </div>
+  <Footer />
+</Layout>
