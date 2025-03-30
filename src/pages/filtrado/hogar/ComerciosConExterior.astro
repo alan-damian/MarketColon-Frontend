@@ -27,7 +27,7 @@ const fetchComerciosAV = async () => {
         const { data, error } = await supabase
           .from(tabla)
           .select('image_profile, name, type, address, location, phone, email, website, products')
-          .ilike('products', '%panaderia%'); // Busca coincidencias de texto
+          .ilike('products', '%exterior%'); // Busca coincidencias de texto
 
         if (error) {
           console.error(`Error fetching data from ${tabla}:`, error);
@@ -54,7 +54,7 @@ await fetchComerciosAV();
 <Layout class="container">
   <!-- Comercios con Audio y Video -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h1 class="text-2xl font-bold font-serif text-gray-800">Comercios con Panadería</h1>
+      <h1 class="text-2xl font-bold font-serif text-gray-800">Comercios para Exterior</h1>
       <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {loading ? (
           <p class="text-center text-gray-500">Cargando comercios...</p>

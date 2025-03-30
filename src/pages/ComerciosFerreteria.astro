@@ -5,7 +5,7 @@ import { supabase } from '../supabaseClient';
 
 const categories = [
   { link:"Comercios", name: "Destacados", icon: "✨" },
-  { link:"ComerciosFerreteria", name: "Ferreteria", icon: "🛠️" },
+  { link:"ComerciosFerreteria", name: "Profesiones", icon: "🛠️" },
   { link:"ComerciosMercado", name: "Mercado", icon: "🛒" },
   { link:"ComerciosTaller", name: "Taller", icon: "🧑‍🔧" },
   { link:"ComerciosVerduleriaCarniceria", name: "Verduleria | Carniceria", icon: "🥬🥩" },
@@ -66,7 +66,7 @@ await fetchComercios();
   <!--------------------------------------------------->
   <!-- Comercios ferreteria -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <h2 class="text-2xl font-bold font-serif text-gray-800">Ferreterías</h2>
+      <h2 class="text-2xl font-bold font-serif text-gray-800">Profesiones</h2>
       <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {loading ? (
           <p class="text-center text-gray-500">Cargando comercios...</p>
